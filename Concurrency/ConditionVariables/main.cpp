@@ -11,10 +11,10 @@ void WorkerThread()
 {
     std::cout << "Worker thread: Waiting for the signal..." << std::endl;
 
-    // Захоплення блокування мутексу
+    // Acquire the lock on the mutex
     std::unique_lock<std::mutex> lock(mtx);
 
-    // Очікування на сигнал
+    // Wait for the signal
     cv.wait(lock, [] { return isReady; });
 
     std::cout << "Worker thread: Received the signal!" << std::endl;
@@ -26,18 +26,18 @@ int main()
 
     std::thread worker(WorkerThread);
 
-    // Деяка робота в головному потоці
+    // Do some work in the main thread
 
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    // Зміна стану і попередження іншого потоку
+    // Change the state and notify the other thread
     {
         std::lock_guard<std::mutex> lock(mtx);
         isReady = true;
         cv.notify_one();
     }
 
-    // Чекаємо на завершення роботи робітника
+    // Wait for the worker thread to finish its work
     worker.join();
 
     std::cout << "Main thread: Worker thread has finished." << std::endl;
