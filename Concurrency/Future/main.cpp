@@ -4,7 +4,7 @@
 // Function that computes the result
 int computeResult()
 {
-    return 42;
+    return 100+100;
 }
 
 int main()
