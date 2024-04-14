@@ -47,6 +47,7 @@ void ACPP_DroneController::SetupInputComponent()
 			if (MoveAction)
 			{
 				EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, OwnedCharacter, &ACPP_BaseDrone::Move);
+				EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, OwnedCharacter, &ACPP_BaseDrone::EndMove);
 			}
 			if (MoveUpAction)
 			{
@@ -63,7 +64,14 @@ void ACPP_DroneController::SetupInputComponent()
 			if (ShootAction)
 			{
 				EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, OwnedCharacter, &ACPP_BaseDrone::StartShooting);
-				EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Canceled, OwnedCharacter, &ACPP_BaseDrone::EndShooting);
+				EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Completed, OwnedCharacter, &ACPP_BaseDrone::EndShooting);
+			}
+
+			// Move Yaw
+			if (ShootAction)
+			{
+				EnhancedInputComponent->BindAction(MoveYaw, ETriggerEvent::Triggered, OwnedCharacter, &ACPP_BaseDrone::MoveYaw);
+				EnhancedInputComponent->BindAction(MoveYaw, ETriggerEvent::Completed, OwnedCharacter, &ACPP_BaseDrone::EndMoveYaw);
 			}
 		}
 	}

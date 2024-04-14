@@ -19,6 +19,14 @@ ACPP_BasePawn::ACPP_BasePawn()
 	
 	// Health Component
 	HealthComponent = CreateDefaultSubobject<UCPP_HealthComponent>(TEXT("Health Component"));
+
+	PrimaryActorTick.bCanEverTick = true;
+}
+
+void ACPP_BasePawn::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
 }
 
 void ACPP_BasePawn::Shoot()

@@ -51,6 +51,10 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input|Action", meta = (AllowPrivateAccess = "true"))
 	UInputAction* ShootAction;
 
+	/** Shoot Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input|Action", meta = (AllowPrivateAccess = "true"))
+	UInputAction* MoveYaw;
+
 	ACPP_BaseDrone* OwnedCharacter;
 
 };
