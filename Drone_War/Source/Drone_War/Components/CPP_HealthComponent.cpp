@@ -62,7 +62,7 @@ void UCPP_HealthComponent::DamageTaken(AActor* DamagedActor, float Damage, const
 				if (UWorld* const World = GetWorld())
 					{
 						UGameplayStatics::OpenLevel(World, FName("TestLevel"));
-						GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+
 					}
 				}, DelayInSeconds, false);
 			return;

@@ -8,10 +8,12 @@
 
 void ACPP_HealthPickUp::WasCollected(ACPP_BasePawn* Drone)
 {
-	Super::WasCollected(Drone);
-
 	if (UCPP_HealthComponent* HPComponent = Drone->GetHealthComponent())
 	{
-		HPComponent->AddHealh(CountHealthAdd);
+		if (!HPComponent->IsDie() && (HPComponent->GetCurrentHealth() < HPComponent->GetMaxHealth()))
+		{
+			HPComponent->AddHealh(CountHealthAdd);
+			Super::WasCollected(Drone);
+		}
 	}
 }
